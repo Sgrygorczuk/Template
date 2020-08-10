@@ -98,9 +98,8 @@ public class LoadingScreen extends ScreenAdapter{
         */
 
         //Loading all of the SFX
-        /*
-        dogFighter.getAssetManager().load("SFX/Abbot.wav", Sound.class);
-        */
+        templet.getAssetManager().load("SFX/Button.wav", Sound.class);
+
 
     }
 

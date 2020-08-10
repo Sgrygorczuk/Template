@@ -82,7 +82,7 @@ public class MenuScreen extends ScreenAdapter{
         showCamera();           //Sets up camera through which objects are draw through
         showTextures();         //Sets up the textures
         showButtons();          //Sets up the buttons
-        showMusic();            //Sets up the music
+        //showMusic();            //Sets up the music
         showObjects();          //Sets up the font
     }
 
@@ -149,7 +149,7 @@ public class MenuScreen extends ScreenAdapter{
                     playButtonFX();
                     //Launches the game
                     if(finalI == 0){
-                        music.stop();
+                        //music.stop();
                         templet.setScreen(new MainScreen(templet));
                     }
                     //Turns on the help menu
@@ -206,7 +206,7 @@ public class MenuScreen extends ScreenAdapter{
     Purpose: Sets up the music that will play when screen is started
     */
     private void showMusic(){
-        //music = dogFighter.getAssetManager().get("Music/GoboMainMenuTheme.wav", Music.class);
+        music = templet.getAssetManager().get("Music/GoboMainMenuTheme.wav", Music.class);
         music.setVolume(0.1f);
         music.setLooping(true);
         music.play();
@@ -337,24 +337,24 @@ public class MenuScreen extends ScreenAdapter{
         bitmapFont.getData().setScale(0.32f);
 
         centerText(bitmapFont, "Programming & Art", WORLD_WIDTH/2f, WORLD_HEIGHT - 80);
-        centerText(bitmapFont, "Sebastian Grygorczuk", WORLD_WIDTH/2f, WORLD_HEIGHT - 95);
+        centerText(bitmapFont, "########", WORLD_WIDTH/2f, WORLD_HEIGHT - 95);
 
         centerText(bitmapFont, "Music", WORLD_WIDTH/2f, WORLD_HEIGHT - 125);
-        centerText(bitmapFont, "Yuriy Lehki", WORLD_WIDTH/2f, WORLD_HEIGHT - 140);
+        centerText(bitmapFont, "########", WORLD_WIDTH/2f, WORLD_HEIGHT - 140);
 
-        centerText(bitmapFont, "SFX - Freesound", WORLD_WIDTH/2f, WORLD_HEIGHT - 170);
-        centerText(bitmapFont, "Bratish", WORLD_WIDTH/2f - 120, WORLD_HEIGHT - 190);
-        centerText(bitmapFont, "pedrocnbp", WORLD_WIDTH/2f, WORLD_HEIGHT - 190);
-        centerText(bitmapFont, "msavioti", WORLD_WIDTH/2f + 120, WORLD_HEIGHT - 190);
-        centerText(bitmapFont, "InspectorJ", WORLD_WIDTH/2f - 120, WORLD_HEIGHT - 210);
-        centerText(bitmapFont, "LiamG_SFX", WORLD_WIDTH/2f, WORLD_HEIGHT - 210);
-        centerText(bitmapFont, "Deatlev", WORLD_WIDTH/2f + 120, WORLD_HEIGHT - 210);
-        centerText(bitmapFont, "joe_anderson22", WORLD_WIDTH/2f - 120, WORLD_HEIGHT - 230);
-        centerText(bitmapFont, "thefsoundman", WORLD_WIDTH/2f, WORLD_HEIGHT - 230);
-        centerText(bitmapFont, "FunWithSound", WORLD_WIDTH/2f + 120, WORLD_HEIGHT - 230);
+        centerText(bitmapFont, "SFX - ########", WORLD_WIDTH/2f, WORLD_HEIGHT - 170);
+        centerText(bitmapFont, "########", WORLD_WIDTH/2f - 120, WORLD_HEIGHT - 190);
+        centerText(bitmapFont, "########", WORLD_WIDTH/2f, WORLD_HEIGHT - 190);
+        centerText(bitmapFont, "########", WORLD_WIDTH/2f + 120, WORLD_HEIGHT - 190);
+        centerText(bitmapFont, "########", WORLD_WIDTH/2f - 120, WORLD_HEIGHT - 210);
+        centerText(bitmapFont, "########", WORLD_WIDTH/2f, WORLD_HEIGHT - 210);
+        centerText(bitmapFont, "########", WORLD_WIDTH/2f + 120, WORLD_HEIGHT - 210);
+        centerText(bitmapFont, "########", WORLD_WIDTH/2f - 120, WORLD_HEIGHT - 230);
+        centerText(bitmapFont, "########", WORLD_WIDTH/2f, WORLD_HEIGHT - 230);
+        centerText(bitmapFont, "########", WORLD_WIDTH/2f + 120, WORLD_HEIGHT - 230);
 
-        centerText(bitmapFont, "Font - 1001fonts", WORLD_WIDTH/2f, WORLD_HEIGHT - 255);
-        centerText(bitmapFont, "RM Albion Font - p2pnut", WORLD_WIDTH/2f, WORLD_HEIGHT - 275);
+        centerText(bitmapFont, "Font - ########", WORLD_WIDTH/2f, WORLD_HEIGHT - 255);
+        centerText(bitmapFont, "########", WORLD_WIDTH/2f, WORLD_HEIGHT - 275);
     }
 
     /*

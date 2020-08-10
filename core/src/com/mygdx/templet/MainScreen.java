@@ -102,7 +102,7 @@ class MainScreen extends ScreenAdapter {
         showTextures();     //Sets up textures
         showObjects();      //Sets up player and font
         showButtons();      //Sets up the buttons
-        showMusic();        //Sets up music
+        //showMusic();        //Sets up music
         if(developerMode){showRender();}    //If in developer mode sets up the redners
     }
 
@@ -208,7 +208,7 @@ class MainScreen extends ScreenAdapter {
                     playButtonSFX();
                     //Returns to the main menu
                     if(finalI == 1){
-                        music.stop();
+                        //music.stop();
                         templet.setScreen(new MenuScreen(templet));
                     }
                     //Restarts the game
@@ -238,13 +238,13 @@ class MainScreen extends ScreenAdapter {
         menuButtons[finalI].setVisible(false);
         //Turns the volume down
         if(sfxVolume == 1f) {
-            music.stop();
+            //music.stop();
             sfxVolume = 0;
             menuButtons[finalI] =  new ImageButton(new TextureRegionDrawable(popUpButtonSpriteSheet[4][0]), new TextureRegionDrawable(popUpButtonSpriteSheet[4][1]));
         }
         //Turns the sound on
         else{
-            music.play();
+            //music.play();
             sfxVolume = 1;
             menuButtons[finalI] =  new ImageButton(new TextureRegionDrawable(popUpButtonSpriteSheet[3][0]), new TextureRegionDrawable(popUpButtonSpriteSheet[3][1]));
         }
