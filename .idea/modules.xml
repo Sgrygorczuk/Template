@@ -2,12 +2,12 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Template.iml" filepath="$PROJECT_DIR$/.idea/modules/Template.iml" group="Template" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/android/android.iml" filepath="$PROJECT_DIR$/.idea/modules/android/android.iml" group="Template/android" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/core/core.iml" filepath="$PROJECT_DIR$/.idea/modules/core/core.iml" group="Template/core" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/desktop/desktop.iml" filepath="$PROJECT_DIR$/.idea/modules/desktop/desktop.iml" group="Template/desktop" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/html/html.iml" filepath="$PROJECT_DIR$/.idea/modules/html/html.iml" group="Template/html" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/ios/ios.iml" filepath="$PROJECT_DIR$/.idea/modules/ios/ios.iml" group="Template/ios" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Template.iml" filepath="$PROJECT_DIR$/.idea/modules/Template.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/android/Template.android.iml" filepath="$PROJECT_DIR$/.idea/modules/android/Template.android.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/core/Template.core.iml" filepath="$PROJECT_DIR$/.idea/modules/core/Template.core.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/desktop/Template.desktop.iml" filepath="$PROJECT_DIR$/.idea/modules/desktop/Template.desktop.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/html/Template.html.iml" filepath="$PROJECT_DIR$/.idea/modules/html/Template.html.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/ios/Template.ios.iml" filepath="$PROJECT_DIR$/.idea/modules/ios/Template.ios.iml" />
     </modules>
   </component>
 </project>

@@ -30,8 +30,8 @@
 20-->/home/sebastian/Projects/LibGDX_Personal/Template/android/AndroidManifest.xml:11:9-40
 21        <activity
 21-->/home/sebastian/Projects/LibGDX_Personal/Template/android/AndroidManifest.xml:12:9-21:20
-22            android:name="com.mygdx.templet.AndroidLauncher"
-22-->/home/sebastian/Projects/LibGDX_Personal/Template/android/AndroidManifest.xml:13:13-61
+22            android:name="com.mygdx.basicTemplet.AndroidLauncher"
+22-->/home/sebastian/Projects/LibGDX_Personal/Template/android/AndroidManifest.xml:13:13-66
 23            android:configChanges="keyboard|keyboardHidden|navigation|orientation|screenSize|screenLayout"
 23-->/home/sebastian/Projects/LibGDX_Personal/Template/android/AndroidManifest.xml:16:13-107
 24            android:label="@string/app_name"

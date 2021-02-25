@@ -9,7 +9,7 @@ import com.badlogic.gdx.backends.android.AndroidApplication;
 import com.badlogic.gdx.backends.android.AndroidApplicationConfiguration;
 import com.mygdx.templet.SaveData.SaveDatabase;
 import com.mygdx.templet.SaveData.SaveEntry;
-import com.mygdx.templet.Templet;
+import com.mygdx.templet.main.BasicTemplet;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -55,7 +55,7 @@ public class AndroidLauncher extends AndroidApplication {
 
 	SaveDatabase.AppDatabase saveDB;			//The database that accesses local storage
 	//The app
-	Templet templet = new Templet();
+	BasicTemplet basicTemplet = new BasicTemplet();
 
 	@Override
 	protected void onCreate (Bundle savedInstanceState) {
@@ -66,7 +66,7 @@ public class AndroidLauncher extends AndroidApplication {
 		AndroidApplicationConfiguration config = new AndroidApplicationConfiguration();
 		config.useAccelerometer = true;										//Allows the use of Accelerometer readings
 		config.useImmersiveMode = true;										//Makes the navigation bar go away
-		initialize(templet, config);										//Starts the game
+		initialize(basicTemplet, config);										//Starts the game
 		//Every 60 sec save the data to data base
 		timer.scheduleAtFixedRate(updateTask, 3000, 6000);
 	}
