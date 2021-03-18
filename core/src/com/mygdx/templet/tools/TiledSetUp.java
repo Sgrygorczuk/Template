@@ -5,10 +5,14 @@ import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.MapLayer;
+import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.utils.Array;
+import com.badlogic.gdx.utils.viewport.StretchViewport;
+import com.badlogic.gdx.utils.viewport.Viewport;
 
 import static com.mygdx.templet.Const.WORLD_HEIGHT;
 import static com.mygdx.templet.Const.WORLD_WIDTH;
@@ -18,18 +22,25 @@ public class TiledSetUp {
     //================================= Variables ==================================================
     SpriteBatch batch;
     Camera camera;
+    Viewport viewport;
     private TiledMap tiledMap;
     private OrthogonalTiledMapRenderer orthogonalTiledMapRenderer;
     private float levelHeight;
     private float levelWidth;
 
     //====================================== Constructor ===========================================
-    TiledSetUp(AssetManager tiledManager, SpriteBatch batch, Camera camera, String mapName){
+    public TiledSetUp(AssetManager tiledManager, SpriteBatch batch, String mapName){
         this.batch = batch;
-        this.camera = camera;
+
+        camera = new OrthographicCamera();                                          //Sets a 2D view
+        camera.position.set(WORLD_WIDTH / 2, WORLD_HEIGHT / 2, 0);           //Places the camera in the center of the view port
+        camera.update();                                                            //Updates the camera
+        viewport = new StretchViewport(WORLD_WIDTH, WORLD_HEIGHT, camera);          //Stretches the image to fit the screen
+        viewport.apply();
+
         showTiled(tiledManager, mapName);
     }
-    
+
     //========================================= Methods ============================================
     /**
      * Purpose: Collects that data necessary for drawing and extracting stuff from Tiled
@@ -48,6 +59,7 @@ public class TiledSetUp {
         TiledMapTileLayer tiledMapTileLayer = (TiledMapTileLayer) tiledMap.getLayers().get(0);
         levelHeight = tiledMapTileLayer.getHeight() * tiledMapTileLayer.getTileHeight();
         levelWidth = tiledMapTileLayer.getWidth() * tiledMapTileLayer.getTileWidth();
+
     }
 
     /**
@@ -66,16 +78,27 @@ public class TiledSetUp {
 
     /**
      * Purpose: Scroll camera horizontally
-     * @param delta timing
-     * @param speed at which camera moves
      */
     public void scrollCameraHorizontally(float delta, float speed) {
-        if (camera.position.x + delta * speed + WORLD_HEIGHT < levelHeight) {
+        if (camera.position.x + delta * speed + WORLD_WIDTH < levelHeight) {
             camera.position.x += delta * speed;
             camera.position.set(camera.position.x, camera.position.y, camera.position.z);
             camera.update();
             orthogonalTiledMapRenderer.setView((OrthographicCamera) camera);
         }
+    }
+
+    public void updateXCameraPosition(float x){
+        if((x > WORLD_WIDTH/2f) && (x < levelWidth - WORLD_WIDTH/2f)) {
+            camera.position.set(x, camera.position.y, camera.position.z);
+            camera.update();
+            orthogonalTiledMapRenderer.setView((OrthographicCamera) camera);
+        }
+    }
+
+    public void updateCamera(Camera camera){
+        this.camera = camera;
+        orthogonalTiledMapRenderer.setView((OrthographicCamera) camera);
     }
 
     /**
@@ -102,23 +125,47 @@ public class TiledSetUp {
      * @param layerName tells us the name of the layer we want to pull from
      * @return a Vector2 of coordinates
      */
-    private Vector2[] getLayerCoordinates(String layerName) {
+    public Array<Vector2> getLayerCoordinates(String layerName) {
         //Grab the layer from tiled map
         MapLayer mapLayer = tiledMap.getLayers().get(layerName);
-        Vector2[] coordinates = new Vector2[mapLayer.getObjects().getCount()];
+        Array<Vector2> coordinates = new Array<>();
 
         //Grabs the coordinates for each instance of that object in the map
-        for (int i = 0; i < mapLayer.getObjects().getCount(); i++) {
-            coordinates[i].x = mapLayer.getObjects().get(i).getProperties().get("x", Float.class);
-            coordinates[i].y = mapLayer.getObjects().get(i).getProperties().get("y", Float.class);
+        for (MapObject mapObject : mapLayer.getObjects()) {
+            Vector2 coordinate = new Vector2(mapObject.getProperties().get("x", Float.class),
+                    mapObject.getProperties().get("y", Float.class));
+            coordinates.add(coordinate);
         }
         return coordinates;
     }
 
     /**
+     * Purpose: Allow user to get dimensions of the object
+     * @param layerName tells us the name of the layer we want to pull from
+     * @return a Vector2 of width and height
+     */
+    public Array<Vector2> getLayerDimensions(String layerName) {
+        //Grab the layer from tiled map
+        MapLayer mapLayer = tiledMap.getLayers().get(layerName);
+        Array<Vector2> dimensions = new Array<>();
+
+        //Grabs the coordinates for each instance of that object in the map
+        for (MapObject mapObject : mapLayer.getObjects()) {
+            Vector2 dimension = new Vector2(mapObject.getProperties().get("width", Float.class),
+                    mapObject.getProperties().get("height", Float.class));
+            dimensions.add(dimension);
+        }
+        return dimensions;
+    }
+
+    public float getLevelHeight(){return levelHeight;}
+
+    public float getLevelWidth(){return levelWidth;}
+
+    /**
      * Purpose: Draws the tiled map
      */
-    private void drawTiledMap() {
+    public void drawTiledMap() {
         batch.setProjectionMatrix(camera.projection);
         batch.setTransformMatrix(camera.view);
         orthogonalTiledMapRenderer.render();

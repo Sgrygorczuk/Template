@@ -16,6 +16,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ActorGestureListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
+import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mygdx.templet.screens.textures.MainScreenTextures;
@@ -23,6 +24,7 @@ import com.mygdx.templet.tools.DebugRendering;
 import com.mygdx.templet.main.BasicTemplet;
 import com.mygdx.templet.tools.MusicControl;
 import com.mygdx.templet.tools.TextAlignment;
+import com.mygdx.templet.tools.TiledSetUp;
 
 import static com.mygdx.templet.Const.INSTRUCTIONS_Y_START;
 import static com.mygdx.templet.Const.INSTRUCTION_BUTTON_Y;
@@ -61,6 +63,7 @@ class MainScreen extends ScreenAdapter {
     private BitmapFont bitmapFont = new BitmapFont();             //Font used for the user interaction
     private final BitmapFont bitmapFontDeveloper = new BitmapFont();    //Font for viewing phone stats in developer mode
     private MainScreenTextures mainScreenTextures;
+    private TiledSetUp tiledSetUp;               //Takes all the data from tiled
 
     //============================================= Flags ==========================================
     private boolean developerMode = false;      //Developer mode shows hit boxes and phone data
@@ -70,14 +73,20 @@ class MainScreen extends ScreenAdapter {
 
     //=================================== Miscellaneous Vars =======================================
     private final String[] menuButtonText = new String[]{"Restart", "Help", "Sound Off", "Main Menu", "Back", "Sound On"};
-
+    private Array<String> levelNames = new Array<>(); //Names of all the lvls in order
+    private int tiledSelection;                       //Which tiled map is loaded in
     //================================ Set Up ======================================================
 
     /**
      * Purpose: Grabs the info from main screen that holds asset manager
      * Input: BasicTemplet
     */
-    MainScreen(BasicTemplet basicTemplet) { this.basicTemplet = basicTemplet;}
+    MainScreen(BasicTemplet basicTemplet, int tiledSelection) {
+        this.basicTemplet = basicTemplet;
+
+        this.tiledSelection = tiledSelection;
+        levelNames.add("Tiled/InfamousMapPlaceHolder.tmx");
+    }
 
 
     /**
@@ -100,8 +109,17 @@ class MainScreen extends ScreenAdapter {
         showObjects();      //Sets up player and font
         mainScreenTextures = new MainScreenTextures();
         showButtons();      //Sets up the buttons
+        showTiled();
         musicControl.showMusic(0);
         if(developerMode){debugRendering.showRender();}    //If in developer mode sets up the redners
+    }
+
+
+    /**
+     * Purpose: Sets up all the objects imported from tiled
+     */
+    private void showTiled() {
+        tiledSetUp = new TiledSetUp(basicTemplet.getAssetManager(), batch, levelNames.get(tiledSelection));
     }
 
     /**

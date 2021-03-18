@@ -32,4 +32,9 @@ public final class Const{
     public static final float MENU_BUTTON_Y_START = 240;
     public static final float MENU_BUTTON_WIDTH = 150;
     public static final float MENU_BUTTON_HEIGHT = 40f;
+
+    //==========================Tile Dimensions =====================
+    public static final float TILED_WIDTH = 16;
+    public static final float TILED_HEIGHT = 16;
+
 }
