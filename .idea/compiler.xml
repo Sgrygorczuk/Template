@@ -6,6 +6,7 @@
       <module name="desktop" target="1.7" />
       <module name="html" target="1.7" />
       <module name="ios" target="1.7" />
+      <module name="LettersToMom.android" target="1.8" />
       <module name="Template.android" target="1.8" />
     </bytecodeTargetLevel>
   </component>

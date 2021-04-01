@@ -1,4 +1,4 @@
-com.mygdx.templet
+com.mygdx.lettersToMom
 attr alpha
 attr font
 attr fontProviderAuthority
